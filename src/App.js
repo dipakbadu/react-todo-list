@@ -15,6 +15,13 @@ function App() {
     });
     setToDoList(mapped);
   }
+  const updateTodo = (todoId, newTask) => {
+    // let aa = prev =>prev.map(item =>(item.id) === todoId ? newTask : item)
+    let aa = toDoList.map(item => {
+      return (item.id) === todoId ? { id: item.id, task: newTask, complete: item.complete } : item;
+    });
+    setToDoList(aa)
+  }
 
   const handleFilter = () => {
     let filtered = toDoList.filter(task => {
@@ -31,7 +38,7 @@ function App() {
     <Container className = "mt-3">
       <Header />
       <ToDoForm addTask = {addTask} />
-      <ToDOList  toDoList = {toDoList} addTask = {addTask} handleToggle = {handleToggle} handleFilter = {handleFilter} />
+      <ToDOList  toDoList = {toDoList} updateTodo = {updateTodo} handleToggle = {handleToggle} handleFilter = {handleFilter} />
     </Container>
   );
 }
